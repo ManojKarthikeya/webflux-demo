@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: reactive-demo
+  
+  r2dbc:
+    url: r2dbc:h2:mem:///reactive_demo;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    pool:
+      initial-size: 5
+      max-size: 20
+      max-idle-time: 30m
+  
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+logging:
+  level:
+    root: INFO
+    com.demo.reactive: DEBUG
+    io.r2dbc: DEBUG
