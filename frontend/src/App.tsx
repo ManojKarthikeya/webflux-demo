@@ -3,13 +3,13 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Layout from './components/Layout';
 import ChatRoom from './pages/ChatRoom';
+import MetricsDashboard from './pages/MetricsDashboard';
 
 // Create a client
 const queryClient = new QueryClient();
 
 // Placeholder components for other pages
 const StockDashboard = () => <div>Stock Dashboard (Coming Soon)</div>;
-const MetricsDashboard = () => <div>Metrics Dashboard (Coming Soon)</div>;
 
 function App() {
   return (

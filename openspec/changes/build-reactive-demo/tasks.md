@@ -124,44 +124,44 @@ This document outlines the sequential tasks for implementing the reactive progra
 ## Phase 4: Metrics Backend (Day 6)
 
 ### Task 12: Configure Micrometer and Actuator
-- [ ] Verify `spring-boot-starter-actuator` in dependencies
-- [ ] Configure `application.yml` to expose metrics endpoint
-- [ ] Enable JVM metrics, HTTP server metrics, and custom metrics
-- [ ] (Optional) Add Prometheus registry for future monitoring
+- [x] Verify `spring-boot-starter-actuator` in dependencies
+- [x] Configure `application.yml` to expose metrics endpoint
+- [x] Enable JVM metrics, HTTP server metrics, and custom metrics
+- [x] (Optional) Add Prometheus registry for future monitoring
 
 **Validation:** GET `/actuator/metrics` returns list of available metrics
 
 ### Task 13: Create metrics aggregation service
-- [ ] Create `service/MetricsService.java`
-- [ ] Inject `MeterRegistry` from Micrometer
-- [ ] Implement `getCurrentMetrics()` returning `Mono<MetricsSnapshot>`
-- [ ] Use `Mono.zip()` to aggregate:
+- [x] Create `service/MetricsService.java`
+- [x] Inject `MeterRegistry` from Micrometer
+- [x] Implement `getCurrentMetrics()` returning `Mono<MetricsSnapshot>`
+- [x] Use `Mono.zip()` to aggregate:
   - JVM memory usage (heap, non-heap)
   - Thread count (active, peak)
   - HTTP request count and rate
   - Average response time
-- [ ] Create `model/MetricsSnapshot.java` with all metric fields
+- [x] Create `model/MetricsSnapshot.java` with all metric fields
 
 **Validation:** Call service method and verify non-null metric values
 
 ### Task 14: Implement metrics REST and SSE endpoints
-- [ ] Create `controller/MetricsController.java`
-- [ ] Implement `@GetMapping("/api/metrics")` returning `Mono<MetricsSnapshot>`
-- [ ] Implement `@GetMapping("/api/metrics/stream")` with SSE
-- [ ] Use `Flux.interval(Duration.ofSeconds(2))` to emit metric updates
-- [ ] Map interval to metric snapshot collection
-- [ ] Return `Flux<MetricsSnapshot>` with `TEXT_EVENT_STREAM`
+- [x] Create `controller/MetricsController.java`
+- [x] Implement `@GetMapping("/api/metrics")` returning `Mono<MetricsSnapshot>`
+- [x] Implement `@GetMapping("/api/metrics/stream")` with SSE
+- [x] Use `Flux.interval(Duration.ofSeconds(2))` to emit metric updates
+- [x] Map interval to metric snapshot collection
+- [x] Return `Flux<MetricsSnapshot>` with `TEXT_EVENT_STREAM`
 
 **Validation:** 
 - GET `/api/metrics` returns JSON snapshot
 - Stream endpoint emits events every 2 seconds
 
 ### Task 15: Add database query metrics
-- [ ] Create aspect or interceptor for repository methods
-- [ ] Use `@Timed` annotation on repository methods
-- [ ] Record query execution time in Micrometer timer
-- [ ] Tag metrics with operation type (findAll, save, etc.)
-- [ ] Include database metrics in MetricsSnapshot
+- [x] Create aspect or interceptor for repository methods
+- [x] Use `@Timed` annotation on repository methods
+- [x] Record query execution time in Micrometer timer
+- [x] Tag metrics with operation type (findAll, save, etc.)
+- [x] Include database metrics in MetricsSnapshot
 
 **Validation:** Execute queries and verify timers in `/actuator/metrics`
 
@@ -297,49 +297,49 @@ This document outlines the sequential tasks for implementing the reactive progra
 ## Phase 8: Metrics Dashboard Frontend (Day 12)
 
 ### Task 28: Fetch initial metrics with React Query
-- [ ] Create `src/api/metrics.ts` with `fetchMetrics()` function
-- [ ] Use `useQuery` to fetch initial metrics snapshot
-- [ ] Display metrics in cards/grid layout
-- [ ] Show loading skeleton while fetching
+- [x] Create `src/api/metrics.ts` with `fetchMetrics()` function
+- [x] Use `useQuery` to fetch initial metrics snapshot
+- [x] Display metrics in cards/grid layout
+- [x] Show loading skeleton while fetching
 
 **Validation:** Initial metrics load and display on page mount
 
 ### Task 29: Create SSE hook for metric updates
-- [ ] Create `src/hooks/useMetricsStream.ts`
-- [ ] Connect to `/api/metrics/stream` with EventSource
-- [ ] Parse incoming metric updates
-- [ ] Maintain rolling window of metric history (60 points)
-- [ ] Return `{ currentMetrics, history, isConnected }`
+- [x] Create `src/hooks/useMetricsStream.ts`
+- [x] Connect to `/api/metrics/stream` with EventSource
+- [x] Parse incoming metric updates
+- [x] Maintain rolling window of metric history (60 points)
+- [x] Return `{ currentMetrics, history, isConnected }`
 
 **Validation:** Hook receives metric updates every 2 seconds
 
 ### Task 30: Implement metrics dashboard page
-- [ ] Create `src/pages/MetricsDashboard.tsx`
-- [ ] Use `useQuery` for initial load and `useMetricsStream` for updates
-- [ ] Create grid layout with metric cards:
+- [x] Create `src/pages/MetricsDashboard.tsx`
+- [x] Use `useQuery` for initial load and `useMetricsStream` for updates
+- [x] Create grid layout with metric cards:
   - Memory usage card
   - CPU usage card (if available)
   - Thread count card
   - Request throughput card
-- [ ] Display current values with units
+- [x] Display current values with units
 
 **Validation:** Metrics display and update in real-time
 
 ### Task 31: Add metrics charts
-- [ ] Create memory usage chart (line chart, heap vs non-heap)
-- [ ] Create request throughput chart (bar chart, req/s over time)
-- [ ] Create thread count gauge (custom or using Recharts PieChart)
-- [ ] Integrate charts into metrics page
-- [ ] Ensure charts update smoothly with new data
+- [x] Create memory usage chart (line chart, heap vs non-heap)
+- [x] Create request throughput chart (bar chart, req/s over time)
+- [x] Create thread count gauge (custom or using Recharts PieChart)
+- [x] Integrate charts into metrics page
+- [x] Ensure charts update smoothly with new data
 
 **Validation:** All charts render and animate with live data
 
 ### Task 32: Add database performance section
-- [ ] Display average query time metric
-- [ ] Show p95 and p99 percentiles
-- [ ] Display query count by operation type
-- [ ] Highlight slow queries (if metric > threshold)
-- [ ] Use color coding for performance (green, yellow, red)
+- [x] Display average query time metric
+- [x] Show p95 and p99 percentiles
+- [x] Display query count by operation type
+- [x] Highlight slow queries (if metric > threshold)
+- [x] Use color coding for performance (green, yellow, red)
 
 **Validation:** Database metrics section displays correctly
 
